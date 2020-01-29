@@ -77,7 +77,7 @@ function winsReset() {
   resultHeaderElem.style.backgroundColor = "grey"
 
   drawWins()
-  drawGameFrame()
+  drawGameFrame("", "")
 }
 
 // Allows the computer player to randomly choose between rock, paper, and scissors
