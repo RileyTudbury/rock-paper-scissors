@@ -7,8 +7,6 @@ let gameFrameElemRight = document.getElementById("game-frame-right")
 let playerWins = 0
 let computerWins = 0
 
-
-
 // Runs through the game and displays results.
 
 function play(playerChoice) {
@@ -58,7 +56,6 @@ function play(playerChoice) {
 
 // Tracks wins for player and computer
 
-
 function drawWins() {
 
   document.getElementById("player-wins").textContent = `${playerWins}`
@@ -66,15 +63,14 @@ function drawWins() {
 
 }
 
-
 // Resets the wins counter
+
 function winsReset() {
   playerWins = 0
   computerWins = 0
 
   drawWins()
 }
-
 
 // Allows the computer player to randomly choose between rock, paper, and scissors
 
@@ -94,6 +90,8 @@ function computerRoll() {
 
   return computerChoice
 }
+
+// Draws the game frame showing each players' choices
 
 function drawGameFrame(playerChoice, computerChoice) {
 
