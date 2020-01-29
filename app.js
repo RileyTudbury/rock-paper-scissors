@@ -2,13 +2,17 @@
 let computerChoice
 let buttonGroupElem = document.getElementById("button-group")
 let resultFrameElem = document.getElementById("result-frame")
+let gameFrameElemLeft = document.getElementById("game-frame-left")
+let gameFrameElemRight = document.getElementById("game-frame-right")
 
 
 
 // Runs through the game and displays results.
 
 function play(playerChoice) {
+
   computerRoll()
+  drawGameFrame(playerChoice, computerChoice)
 
   console.log(`Computer has chosen ${computerChoice}`)
   console.log(`You have chosen ${playerChoice}`)
@@ -41,8 +45,6 @@ function play(playerChoice) {
         break;
     }
   }
-
-
 }
 
 
@@ -63,4 +65,11 @@ function computerRoll() {
   }
 
   return computerChoice
+}
+
+function drawGameFrame(playerChoice, computerChoice) {
+
+  gameFrameElemLeft.textContent = `You chose: ${playerChoice}`
+  gameFrameElemRight.textContent = `The computer chose: ${computerChoice}`
+
 }
