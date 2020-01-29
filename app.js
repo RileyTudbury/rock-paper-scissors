@@ -73,10 +73,11 @@ function drawWins() {
 function winsReset() {
   playerWins = 0
   computerWins = 0
-  resultFrameElem.textContent = ""
+  resultFrameElem.textContent = "Score reset. Choose your weapon to play!"
   resultHeaderElem.style.backgroundColor = "grey"
 
   drawWins()
+  drawGameFrame()
 }
 
 // Allows the computer player to randomly choose between rock, paper, and scissors
