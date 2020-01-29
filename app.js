@@ -7,13 +7,13 @@ let gameFrameElemLeft = document.getElementById("game-frame-left")
 let gameFrameElemRight = document.getElementById("game-frame-right")
 let playerWins = 0
 let computerWins = 0
+let tieCounter = 0
 
 // Runs through the game and displays results.
 
 function play(playerChoice) {
   computerRoll()
   drawGameFrame(playerChoice, computerChoice)
-  drawWins()
 
   console.log(`Computer has chosen ${computerChoice}`)
   console.log(`You have chosen ${playerChoice}`)
@@ -21,6 +21,7 @@ function play(playerChoice) {
   if (playerChoice == computerChoice) {
     resultFrameElem.textContent = "You have tied!"
     resultHeaderElem.style.backgroundColor = "yellow"
+    tieCounter++
   }
   else {
     switch (playerChoice) {
@@ -58,7 +59,10 @@ function play(playerChoice) {
         resultHeaderElem.style.backgroundColor = "green"
         break;
     }
+
   }
+
+  drawWins()
 }
 
 // Tracks wins for player and computer
@@ -66,6 +70,7 @@ function play(playerChoice) {
 function drawWins() {
   document.getElementById("player-wins").textContent = `${playerWins}`
   document.getElementById("computer-wins").textContent = `${computerWins}`
+  document.getElementById("game-ties").textContent = `${tieCounter}`
 }
 
 // Resets the wins counter
@@ -73,6 +78,7 @@ function drawWins() {
 function winsReset() {
   playerWins = 0
   computerWins = 0
+  tieCounter = 0
   resultFrameElem.textContent = "Score reset. Choose your weapon to play!"
   resultHeaderElem.style.backgroundColor = "grey"
 
