@@ -10,7 +10,6 @@ let computerWins = 0
 // Runs through the game and displays results.
 
 function play(playerChoice) {
-
   computerRoll()
   drawGameFrame(playerChoice, computerChoice)
   drawWins()
@@ -57,10 +56,8 @@ function play(playerChoice) {
 // Tracks wins for player and computer
 
 function drawWins() {
-
   document.getElementById("player-wins").textContent = `${playerWins}`
   document.getElementById("computer-wins").textContent = `${computerWins}`
-
 }
 
 // Resets the wins counter
@@ -94,8 +91,6 @@ function computerRoll() {
 // Draws the game frame showing each players' choices
 
 function drawGameFrame(playerChoice, computerChoice) {
-
   gameFrameElemLeft.textContent = `You chose: ${playerChoice}`
   gameFrameElemRight.textContent = `The computer chose: ${computerChoice}`
-
 }
