@@ -14,7 +14,7 @@
 <body>
 
 
-  <div class="container-fluid">
+  <div class="container-fluid px-1">
     <div class="row">
 
       <!-- Main game area -->
@@ -40,13 +40,15 @@
 
       <div class="col-6 text-center">
         <div class="card">
-          <div class="card-body" id="game-frame-left">
+
+          <div class="card-body" id="game-frame-left"> Your Choice
           </div>
         </div>
       </div>
+
       <div class="col-6 text-center">
         <div class="card">
-          <div class="card-body" id="game-frame-right">
+          <div class="card-body" id="game-frame-right"> Computer Choice
           </div>
         </div>
       </div>
@@ -55,6 +57,7 @@
 
       <div class="col-12 text-center">
         <div class="card">
+          <div class="card-header" id="result-header"></div>
           <div class="card-body" id="result-frame">
           </div>
         </div>
@@ -65,14 +68,14 @@
       <div class="col-6 text-center">
         <div class="card">
           <div class="card-body">
-            Player wins: <span id="player-wins"></span>
+            Player wins: <span id="player-wins">0</span>
           </div>
         </div>
       </div>
       <div class="col-6 text-center">
         <div class="card">
           <div class="card-body">
-            Computer wins: <span id="computer-wins"></span>
+            Computer wins: <span id="computer-wins">0</span>
           </div>
         </div>
       </div>

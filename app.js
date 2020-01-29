@@ -2,6 +2,7 @@
 let computerChoice
 let buttonGroupElem = document.getElementById("button-group")
 let resultFrameElem = document.getElementById("result-frame")
+let resultHeaderElem = document.getElementById("result-header")
 let gameFrameElemLeft = document.getElementById("game-frame-left")
 let gameFrameElemRight = document.getElementById("game-frame-right")
 let playerWins = 0
@@ -19,6 +20,7 @@ function play(playerChoice) {
 
   if (playerChoice == computerChoice) {
     resultFrameElem.textContent = "You have tied!"
+    resultHeaderElem.style.backgroundColor = "yellow"
   }
   else {
     switch (playerChoice) {
@@ -26,28 +28,34 @@ function play(playerChoice) {
         if (computerChoice == "paper") {
           resultFrameElem.textContent = "Sorry, you lose."
           computerWins++
+          resultHeaderElem.style.backgroundColor = "red"
           break;
         }
         resultFrameElem.textContent = "You won!"
         playerWins++
+        resultHeaderElem.style.backgroundColor = "green"
         break;
       case "paper":
         if (computerChoice == "scissors") {
           resultFrameElem.textContent = "Sorry, you lose."
           computerWins++
+          resultHeaderElem.style.backgroundColor = "red"
           break;
         }
         resultFrameElem.textContent = "You won!"
         playerWins++
+        resultHeaderElem.style.backgroundColor = "green"
         break;
       case "scissors":
         if (computerChoice == "rock") {
           resultFrameElem.textContent = "Sorry, you lose."
           computerWins++
+          resultHeaderElem.style.backgroundColor = "red"
           break;
         }
         resultFrameElem.textContent = "You won!"
         playerWins++
+        resultHeaderElem.style.backgroundColor = "green"
         break;
     }
   }
@@ -65,6 +73,8 @@ function drawWins() {
 function winsReset() {
   playerWins = 0
   computerWins = 0
+  resultFrameElem.textContent = ""
+  resultHeaderElem.style.backgroundColor = "grey"
 
   drawWins()
 }
