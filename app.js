@@ -5,8 +5,8 @@ let resultFrameElem = document.getElementById("result-frame")
 let resultHeaderElem = document.getElementById("result-header")
 let gameFrameElemLeft = document.getElementById("game-frame-left")
 let gameFrameElemRight = document.getElementById("game-frame-right")
-let playerWins = 0
 let computerWins = 0
+let playerWins = 0
 let tieCounter = 0
 
 // Runs through the game and displays results.
@@ -59,9 +59,7 @@ function play(playerChoice) {
         resultHeaderElem.style.backgroundColor = "green"
         break;
     }
-
   }
-
   drawWins()
 }
 
