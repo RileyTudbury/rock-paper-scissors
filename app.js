@@ -12,7 +12,6 @@ let turnCounter = 0
 let multiplayer = false
 let player1Turn = true
 
-
 // Tracks wins for player and computer
 
 function drawWins() {
@@ -164,7 +163,6 @@ function playMulti(player1Choice, player2Choice) {
   }
 }
 
-
 // Setters for Single/Multi
 
 function setSingle() {
@@ -200,8 +198,6 @@ function setChoice(choice) {
     play(choice)
   }
 }
-
-
 
 // Single / Multiplayer selectors
 
