@@ -8,8 +8,66 @@ let gameFrameElemRight = document.getElementById("game-frame-right")
 let computerWins = 0
 let playerWins = 0
 let tieCounter = 0
+let turnCounter = 0
+let multiplayer = false
+let player1Turn = true
 
-// Runs through the game and displays results.
+
+// Tracks wins for player and computer
+
+function drawWins() {
+  document.getElementById("player-wins").textContent = `${playerWins}`
+  document.getElementById("computer-wins").textContent = `${computerWins}`
+  document.getElementById("game-ties").textContent = `${tieCounter}`
+}
+
+// Resets the wins counter
+
+function winsReset() {
+  playerWins = 0
+  computerWins = 0
+  tieCounter = 0
+  resultFrameElem.textContent = "Score reset. Choose your weapon to play!"
+  resultHeaderElem.style.backgroundColor = "grey"
+
+  drawWins()
+  drawGameFrame("", "")
+}
+
+// Allows the computer player to randomly choose between rock, paper, and scissors
+
+function computerRoll() {
+
+  let randomNumber = Math.floor(Math.random() * 3);
+
+  if (randomNumber == 0) {
+    computerChoice = "rock"
+  }
+  else if (randomNumber == 1) {
+    computerChoice = "paper"
+  }
+  else {
+    computerChoice = "scissors"
+  }
+
+  return computerChoice
+}
+
+// Draws the game frame showing each players' choices
+
+function drawGameFrame(choice1, choice2) {
+
+  if (multiplayer == false) {
+    gameFrameElemLeft.textContent = `You chose: ${choice1}`
+    gameFrameElemRight.textContent = `The computer chose: ${choice2}`
+  }
+  else {
+    gameFrameElemLeft.textContent = `Player 1 chose: ${choice1}`
+    gameFrameElemRight.textContent = `Player 2 chose: ${choice2}`
+  }
+}
+
+// Runs through the single player game and displays results.
 
 function play(playerChoice) {
   computerRoll()
@@ -63,49 +121,90 @@ function play(playerChoice) {
   drawWins()
 }
 
-// Tracks wins for player and computer
+// Plays a multiplayer version of the game.
 
-function drawWins() {
-  document.getElementById("player-wins").textContent = `${playerWins}`
-  document.getElementById("computer-wins").textContent = `${computerWins}`
-  document.getElementById("game-ties").textContent = `${tieCounter}`
-}
+function playMulti(player1Choice, player2Choice) {
 
-// Resets the wins counter
+  drawGameFrame(player1Choice, player2Choice)
 
-function winsReset() {
-  playerWins = 0
-  computerWins = 0
-  tieCounter = 0
-  resultFrameElem.textContent = "Score reset. Choose your weapon to play!"
-  resultHeaderElem.style.backgroundColor = "grey"
-
-  drawWins()
-  drawGameFrame("", "")
-}
-
-// Allows the computer player to randomly choose between rock, paper, and scissors
-
-function computerRoll() {
-
-  let randomNumber = Math.floor(Math.random() * 3);
-
-  if (randomNumber == 0) {
-    computerChoice = "rock"
-  }
-  else if (randomNumber == 1) {
-    computerChoice = "paper"
+  if (player1Choice == player2Choice) {
+    resultFrameElem.textContent = "You have tied!"
+    tieCounter++
   }
   else {
-    computerChoice = "scissors"
+    switch (player1Choice) {
+      case "rock":
+        if (player2Choice == "paper") {
+          resultFrameElem.textContent = "Player 2 Wins!"
+          computerWins++
+          break;
+        }
+        resultFrameElem.textContent = "Player 1 Wins!"
+        playerWins++
+        break;
+      case "paper":
+        if (player2Choice == "scissors") {
+          resultFrameElem.textContent = "Player 2 Wins!"
+          computerWins++
+          break;
+        }
+        resultFrameElem.textContent = "Player 1 Wins!"
+        playerWins++
+        break;
+      case "scissors":
+        if (player2Choice == "rock") {
+          resultFrameElem.textContent = "Player 2 Wins!"
+          computerWins++
+          break;
+        }
+        resultFrameElem.textContent = "Player 1 Wins!"
+        playerWins++
+        break;
+    }
   }
-
-  return computerChoice
 }
 
-// Draws the game frame showing each players' choices
 
-function drawGameFrame(playerChoice, computerChoice) {
-  gameFrameElemLeft.textContent = `You chose: ${playerChoice}`
-  gameFrameElemRight.textContent = `The computer chose: ${computerChoice}`
+// Setters for Single/Multi
+
+function setSingle() {
+  multiplayer = false
+  console.log("Set to singleplayer")
 }
+
+function setMulti() {
+  multiplayer = true
+  console.log("Set to multiplayer")
+}
+
+// Setters for player choice
+
+function setChoice(choice) {
+  if (player1Turn == true && multiplayer == true) {
+    var player1Choice = choice
+    console.log(`Player 1 chose ${player1Choice}`)
+    player1Turn = false
+    turnCounter++
+  }
+  else if (player1Turn == false && multiplayer == true) {
+    var player2Choice = choice
+    console.log(`Player 2 chose ${player2Choice}`)
+    player1Turn = true
+    turnCounter++
+  }
+  if (multiplayer == true && turnCounter == 2) {
+    playMulti(player1Choice, player2Choice)
+    turnCounter = 0
+  }
+  if (multiplayer == false) {
+    play(choice)
+  }
+}
+
+
+
+// Single / Multiplayer selectors
+
+document.getElementById("btnSinglePlayer").addEventListener("click", setSingle)
+document.getElementById("btnMultiPlayer").addEventListener("click", setMulti)
+
